@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "0f35959e-dbc1-4b7f-8bbd-05bda5edd5d1",
+		"name": "Machine Learning",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1862505"
+	},
+	"item": [
+		{
+			"name": "http://localhost/predictPrice",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"brand\": \"Pulte Homes\",\n    \"zip\": \"48439\",\n    \"bedrooms\": 4,\n    \"baths\": 2.5,\n    \"baseSqFt\": 3000,\n    \"garage\": 3,\n    \"stories\": 2\n}"
+				},
+				"url": {
+					"raw": "http://localhost/predictPrice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"predictPrice"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
