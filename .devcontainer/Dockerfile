@@ -15,6 +15,7 @@ RUN conda install category_encoders
 RUN conda install graphviz
 RUN pip install pyarrow 
 RUN conda install python-graphviz
+RUN pip install shap
 RUN pip install sklearn
 RUN pip install torch
 RUN pip install torchtext
