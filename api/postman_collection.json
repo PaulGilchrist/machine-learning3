@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"brand\": \"Pulte Homes\",\n    \"zip\": \"48439\",\n    \"bedrooms\": 4,\n    \"baths\": 2.5,\n    \"baseSqFt\": 3000,\n    \"garage\": 3,\n    \"stories\": 2\n}"
+					"raw": "{\n    \"brand\": \"Pulte Homes\",\n    \"zip\": \"33541\",\n    \"bedrooms\": 4,\n    \"baths\": 2.5,\n    \"baseSqFt\": 3000,\n    \"garage\": 3,\n    \"stories\": 2\n}"
 				},
 				"url": {
 					"raw": "http://localhost/predictPrice",

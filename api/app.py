@@ -19,8 +19,8 @@ app = Flask(__name__)
 class MyModel(nn.Module):
     def __init__(self, in_features, num_brand_embeddings, num_zip_embeddings, brand_dictionary, zip_dictionary):
         super(MyModel, self).__init__()
-        embedding_dim = 5 # Size of each embedding vector (tunable during training)
-        hidden_dim = 16 # Dimensions used for the inner layers of the model
+        embedding_dim = 10 # Size of each embedding vector (tunable during training)
+        hidden_dim = 32 # Dimensions used for the inner layers of the model
         self.brand_dictionary = brand_dictionary
         self.zip_dictionary = zip_dictionary
         self.brand_embedding = nn.Embedding(num_brand_embeddings, embedding_dim)
@@ -31,9 +31,10 @@ class MyModel(nn.Module):
         self.layer3 = nn.Linear(hidden_dim, 1)
         
     def forward(self, brand_tensor, zip_tensor, input_tensor):
-        brand_tensor = self.brand_embedding(brand_tensor)
-        zip_tensor = self.zip_embedding(zip_tensor)
+        brand_tensor = self.brand_embedding(brand_tensor.to(torch.int))
+        zip_tensor = self.zip_embedding(zip_tensor.to(torch.int))
         # Concat all tensors after creating embedding vectors, then pass them into the first layer
+        # Input Tensor Index = baseSqFt, bedrooms, baths, garage, stories
         x = torch.cat([brand_tensor, zip_tensor, input_tensor], dim=1)
         x = nn.functional.relu(self.layer1(x))
         x = nn.functional.relu(self.layer2(x))
@@ -56,10 +57,11 @@ def predict():
     brand_tensor = torch.tensor([brand_embedding_index], dtype=torch.long)
     zip_embedding_index = get_key(model.zip_dictionary, data['zip'])
     if(zip_embedding_index == -1):
+        print(model.zip_dictionary)
         abort(400, f'Unknown zip')
     zip_tensor = torch.tensor([zip_embedding_index], dtype=torch.long)
     # remaining required inputs
-    input_tensor = torch.tensor([[data['bedrooms'], data['baths'], data['baseSqFt'], data['garage'], data['stories']]], dtype=torch.float)
+    input_tensor = torch.tensor([[data['baseSqFt'], data['bedrooms'], data['baths'], data['garage'], data['stories']]], dtype=torch.float)
     prediction = model(brand_tensor, zip_tensor, input_tensor)
     return jsonify({'predicted_price': round(prediction.item())})
 
