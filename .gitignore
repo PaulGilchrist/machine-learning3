@@ -1,6 +1,7 @@
 .vector_cache/
 get_data.sh
 inputs/FashionMNIST/
+notebooks/cache/
 outputs/
 
 # Byte-compiled / optimized / DLL files
