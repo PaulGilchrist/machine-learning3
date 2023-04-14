@@ -1,4 +1,5 @@
 .vector_cache/
+inputs/environment.py
 get_data.sh
 inputs/FashionMNIST/
 notebooks/cache/

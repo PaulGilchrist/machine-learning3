@@ -57,7 +57,6 @@ def predict():
     brand_tensor = torch.tensor([brand_embedding_index], dtype=torch.long)
     zip_embedding_index = get_key(model.zip_dictionary, data['zip'])
     if(zip_embedding_index == -1):
-        print(model.zip_dictionary)
         abort(400, f'Unknown zip')
     zip_tensor = torch.tensor([zip_embedding_index], dtype=torch.long)
     # remaining required inputs
